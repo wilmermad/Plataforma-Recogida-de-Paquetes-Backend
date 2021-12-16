@@ -84,7 +84,6 @@ userCtrl.deleteUser = async (req, res) => {
   res.json("Usuario borrado");
 };
 
-const indicador=false;
 
 
 userCtrl.updateUser = async (req, res) => {
