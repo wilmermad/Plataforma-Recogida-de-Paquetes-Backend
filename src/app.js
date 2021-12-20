@@ -1,18 +1,17 @@
 const express = require("express");
-const cors = require('cors')
+const cors = require("cors");
+
 const app = express();
 
+//Configuración
+app.set("puerto", process.env.PUERTO);
 
-//settings
-app.set('port', process.env.PORT || 4000)
-
-//middleware
+//Middleware
 app.use(cors());
-app.use(express.json())
+app.use(express.json());
 
-//routes
-app.use('/logins', require('./routes/logins'));
-app.use('/recogidas', require('./routes/recogidas'));
-app.use('/users', require('./routes/users'));
+//Rutas
+app.use("/envios", require("./routes/envios"));
+app.use("/usuarios", require("./routes/usuarios"));
 
 module.exports = app;
