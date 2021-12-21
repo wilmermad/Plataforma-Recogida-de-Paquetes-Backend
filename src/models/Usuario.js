@@ -6,7 +6,7 @@ const usuarioSchema = new Schema(
     numDoc: {
       type: Number,
       required: [true, "Error, el número de identificación es obligatorio"],
-      unique: true,
+      unique: [true, "Error, número de identificación duplicado"]
     },
     nombre: {
       type: String,
@@ -21,10 +21,12 @@ const usuarioSchema = new Schema(
     email: {
       type: String,
       required: [true, "Error, el correo es obligatorio"],
+      unique: true
     },
     usuario: {
       type: String,
       required: [true, "Error, el nombre de usuario es obligatorio"],
+      unique: true
     },
     clave: {
       type: String,
@@ -44,8 +46,6 @@ const usuarioSchema = new Schema(
   }
 );
 
-usuarioSchema.plugin(uniqueValidator, {
-  message: "Error, otro usuario ya tiene ese número de identificación.",
-});
+usuarioSchema.plugin(uniqueValidator, {message: 'Registro ya existe en la base de datos'});
 
 module.exports = model("Usuario", usuarioSchema);

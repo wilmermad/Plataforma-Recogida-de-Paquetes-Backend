@@ -10,6 +10,10 @@ const {
   editarEnvio
 } = require("../controllers/envioControl");
 
+/* router.route("/crear/:numDocRemit")
+    .post(crearEnvio); */
+
+
 router.route("/")
     .get(verEnvios)
     .post(crearEnvio);

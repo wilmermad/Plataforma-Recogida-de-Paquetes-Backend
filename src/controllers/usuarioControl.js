@@ -54,9 +54,9 @@ usuarioControl.verUsuario = async (req, res) => {
 usuarioControl.validarCredenciales = async (req, res) => {
   const usuario = await Usuario.findOne({ usuario: req.params.usuario });
   if (usuario.clave === req.params.clave) {
-    res.json(true);
+    res.json({bandera: true, usuario: usuario});
   } else {
-    res.json(false);
+    res.json({bandera:false});
   }
 };
 

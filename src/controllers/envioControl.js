@@ -80,19 +80,25 @@ envioControl.crearEnvio = async (req, res) => {
     ciudadDest: ciudadDest,
     departamentoDest: departamentoDest,
   });
+  
   const usuario = await Usuario.findOne({ numDoc: nuevoEnvio.numDocRemit });
-  if (!usuario) {
-    res.json("Error, número de documento no está registrado");
-  }
-  if (usuario.numDoc === nuevoEnvio.numDocRemit) {
-    const usuarioDevuelto = await nuevoEnvio.save();
-    if (usuarioDevuelto) {
-      res.json("Envío programado con éxito");
-    } else {
-      res.json("Error, no se pudo programar el envío");
-    }
-  }
-};
+    
+      if (usuario) {
+        try {
+        await nuevoEnvio.save();
+        res.json("si");
+      } catch (e) {
+        res.json("Error, no se pudo programar la recogida. " + e);
+      }
+      }else{
+        res.json("no")
+      }
+    
+  } 
+
+/* catch(e){
+  res.json("Error, no se pudo programar el envío");
+ } */
 
 envioControl.verEnvio = async (req, res) => {
   const envio = await Envio.find({ _id: req.params._id });
