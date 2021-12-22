@@ -4,7 +4,7 @@ const cors = require("cors");
 const app = express();
 
 //Configuración
-app.set("puerto", process.env.PUERTO);
+app.set("puerto", process.env.PUERTO || 8080);
 
 //Middleware
 app.use(cors());
